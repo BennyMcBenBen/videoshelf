@@ -1,0 +1,19 @@
+<h1>Recently Added Videos</h1>
+<% for video in @videos %>
+	<div class="entry">
+		<div class="video-image"><%= link_to image_tag(video.image_url), :action => 'video', :id => video %></div>
+		<h3>
+			<div class="video-title">
+				
+				<% if video.class == Episode %>
+					<%= link_to video.show.title , :action => 'show', :id => video.show -%>:
+					<%= link_to video.title , :action => 'video', :id => video -%>
+					<span class="episode-num"> [Episode <%= h(video.season_no) %>x<%= h(video.season_ep_no) %>]</span>
+				<% else %>
+					<%= link_to video.title, :action => 'video', :id => video %>
+				<% end %>
+			</div>
+		</h3>
+		<div class="video-description"><%= h(video.description) %></div>
+	</div>
+<% end %>

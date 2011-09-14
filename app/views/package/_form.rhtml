@@ -1,0 +1,45 @@
+<%= error_messages_for 'package' %>
+<!--[form:package]-->
+<p>
+    <label for="package_title">
+        Title
+    </label>
+    <br/>
+    <%= text_field 'package', 'title' %>
+</p>
+<p>
+    <label for="package_form">
+        Form:
+    </label>
+    <%= radio_button :package, :form, 'film' %>Film
+	<%= radio_button :package, :form, 'show' %>Show
+</p>
+<p>
+    <label for="package_format">
+        Format:
+    </label>
+    <%= radio_button :package, :format, 'dvd' %>DVD
+	<%= radio_button :package, :format, 'blu-ray' %>Blu-ray
+</p>
+<p>
+    <label for="package_description">
+        Description
+    </label>
+    <br/>
+    <%= text_area 'package', 'description' %>
+</p>
+<p>
+    <label for="package_image_url">
+        Image URL
+    </label>
+    <br/>
+    <%= text_field 'package', 'image_url' %>
+</p>
+<p>
+    <label for="package_no_discs">
+        No discs
+    </label>
+    <br/>
+    <%= text_field 'package', 'no_discs' %>
+</p>
+<!--[eoform:package]-->

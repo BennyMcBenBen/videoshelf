@@ -1,0 +1,24 @@
+<p>
+	<img src="/images/<%= @show.image_url %>"/>
+</p>
+<p>
+    <h2><%= h(@show.title) %></h2>
+	<% if @show.onair %>
+		Status: On Air
+	<% else %>
+		Status: Cancelled
+	<% end %>
+	(<%= h(@show.start_year) %>-<%= h(@show.end_year) %>)
+	<br />
+	Number of seasons: <%= h(@show.no_seasons) %>
+	<br />
+    <%= h(@show.description) %>
+	<br />
+	<h3>Episodes:</h3>
+	<ul>
+	<% for episode in @episodes %>
+		<li><%= h(episode.season_no) %>x<%= h(episode.season_ep_no) %>:
+			<%= link_to episode.title, :action => 'video', :id => episode %></li>
+	<% end %>
+	</ul>
+</p>

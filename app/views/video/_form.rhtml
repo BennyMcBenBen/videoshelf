@@ -1,0 +1,70 @@
+<%= error_messages_for :video %>
+<%= error_messages_for :episode %>
+<p>
+    <label for="video_title">
+        Title
+    </label>
+    <br/>
+    <%= text_field :video, :title %>
+</p>
+<p>
+    <label for="video_description">
+        Description
+    </label>
+    <br/>
+    <%= text_area :video, :description %>
+</p>
+<p>
+    <label for="video_image_url">
+        Image url
+    </label>
+    <br/>
+    <%= text_field :video, :image_url %>
+</p>
+<p>
+    <label for="video_year">
+        Year
+    </label>
+    <br/>
+    <%= text_field :video, :year %>
+</p>
+<p>
+    <label for="video_length">
+        Time length (in minutes)
+    </label>
+    <br/>
+    <%= text_field :video, :length %>
+</p>
+<p>
+    <label for="video_type">
+        Type
+    </label>
+    <% if @redo_episode or @video.type == 'Episode' %>
+    	<%= radio_button :video, :type, nil %>Film
+		<%= radio_button :video, :type, 'Episode', { :checked => true } %>Episode
+	<% else %>
+    	<%= radio_button :video, :type, nil, { :checked => true } %>Film
+		<%= radio_button :video, :type, 'Episode' %>Episode
+	<% end %>
+</p>
+<fieldset>
+    <legend>
+        Episode
+    </legend>
+    <p>
+        <label for="video_show_id">
+            Show
+        </label>
+        <%= collection_select(:video, :show_id, @shows, :id, :title, { :include_blank => true } ) %>
+    </p>
+    <p>
+        <label for="video_season_no">
+            Season no
+        </label>
+        <%= text_field :video, :season_no %>
+        <label for="video_season_ep_no">
+            Season ep no
+        </label>
+        <%= text_field :video, :season_ep_no %>
+    </p>
+</fieldset>

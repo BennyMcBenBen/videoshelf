@@ -1,0 +1,9 @@
+<h1>Editing disc_video</h1>
+
+<% form_tag :action => 'update', :id => @disc_video do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag 'Edit' %>
+<% end %>
+
+<%= link_to 'Show', :action => 'show', :id => @disc_video %> |
+<%= link_to 'Back', :action => 'list' %>

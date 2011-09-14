@@ -1,0 +1,52 @@
+<div id="video-list">
+  <h1>Video Listing</h1>
+
+  <table cellpadding="5" cellspacing="0">
+  <% for video in @videos %>
+    <tr valign="top" class="<%= cycle('list-line-odd', 'list-line-even') %>">
+
+      <td>
+        <img class="list-image" src="/images/<%= video.image_url %>"/>
+      </td>
+
+      <td width="60%">
+		<% if video.class == Episode %>
+			<span class="list-title"><%= h(video.show.title) %>:</span>
+		<% end %>
+		
+        <span class="list-title"><%= h(video.title) %></span>
+		
+		<% if video.class == Episode %>
+			<span class="list-year">(<%= h(video.year) %>)</span> [Episode <%= h(video.season_no) %>x<%= h(video.season_ep_no) %>], <%= h(video.length) %> minutes
+		<% else %>
+			<span class="list-year">(<%= h(video.year) %>)</span>, <%= h(video.length) %> minutes
+		<% end %>
+		
+		<br />
+        <%= h(truncate(video.description, 80)) %>
+      </td>
+
+      <td class="list-actions">
+        <%= link_to 'Show', :action => 'show', :id => video %><br/>
+        <%= link_to 'Edit', :action => 'edit', :id => video %><br/>
+        <%= link_to 'Destroy', { :action  => 'destroy', :id => video },
+                                 :confirm => "Are you sure?",
+                                 :method  => :post %>
+      </td>
+    </tr>
+  <% end %>
+  </table>
+</div>
+
+<%=  if @video_pages.current.previous 
+       link_to("Previous page", { :page => @video_pages.current.previous })
+     end
+%>
+<%= if @video_pages.current.next 
+      link_to("Next page", { :page => @video_pages.current.next })
+    end
+%>
+
+<br />
+
+<%= link_to 'New Video', :action => 'new' %>

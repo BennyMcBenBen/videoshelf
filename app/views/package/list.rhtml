@@ -1,0 +1,37 @@
+<div id="video-list">
+<h1>Package Listing</h1>
+
+  <table cellpadding="5" cellspacing="0">
+  <% for package in @packages %>
+    <tr valign="top" class="<%= cycle('list-line-odd', 'list-line-even') %>">
+
+      <td>
+        <img class="list-image" src="/images/<%= package.image_url %>"/>
+      </td>
+
+      <td width="60%">
+        <span class="list-title"><%= h(package.title) %></span>
+		<br />
+        <%= h(truncate(package.description, 80)) %>
+		<br />
+		No. discs: <%= h(package.no_discs) %>, Form: <%= h(package.form) %>, Format: <%= h(package.format) %>
+      </td>
+
+      <td class="list-actions">
+        <%= link_to 'Show', :action => 'show', :id => package %><br/>
+        <%= link_to 'Edit', :action => 'edit', :id => package %><br/>
+        <%= link_to 'Destroy', { :action  => 'destroy', :id => package },
+                                 :confirm => "Are you sure?",
+                                 :method  => :post %>
+      </td>
+    </tr>
+  <% end %>
+  </table>
+</div>
+
+<%= link_to 'Previous page', { :page => @package_pages.current.previous } if @package_pages.current.previous %>
+<%= link_to 'Next page', { :page => @package_pages.current.next } if @package_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New package', :action => 'new' %>

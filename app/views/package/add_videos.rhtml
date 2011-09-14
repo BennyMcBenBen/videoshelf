@@ -1,0 +1,16 @@
+<h1>Add Videos</h1>
+<% form_for :package, :url => { :action => 'save_videos', :id => @package.id } do |f| %>
+	<% @package.discs.each do |disc| %>
+	<p>
+ 		Disc <%= disc.disc_no %> Videos:
+   		<p>
+    		<%= collection_select(:disc_video, :video_ids,
+    			@videos, :id, :title,
+    			{ },
+    			:multiple => true,
+    			:name => "disc[#{disc.disc_no}][]") %>
+		</p>
+	</p>
+	<% end %>
+    <%= submit_tag 'Save Disc Videos' %>
+<% end %>

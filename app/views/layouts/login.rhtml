@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <title>Show: <%= controller.action_name %></title>
+  <%= stylesheet_link_tag "scaffold", "videoshelf", :media => "all" %>
+</head>
+<body id="admin">
+  <div id="banner">
+    <%= @page_title || "Videoshelf" %>
+  </div>
+  <div id="columns">
+    <div id="side">
+    	<p><%= link_to 'Register', :action => :register %></p>
+    </div>
+    <div id="main">
+    <% if flash[:notice] -%>
+      <div id="notice"><%= flash[:notice] %></div>
+    <% end -%>
+      <%= yield :layout %>
+    </div>
+  </div>
+</body>
+</html>

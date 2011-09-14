@@ -1,0 +1,26 @@
+<%= error_messages_for 'show' %>
+
+<!--[form:show]-->
+<p><label for="show_title">Title</label><br/>
+<%= text_field 'show', 'title'  %></p>
+
+<p><label for="show_description">Description</label><br/>
+<%= text_area 'show', 'description'  %></p>
+
+<p><label for="show_image_url">Image url</label><br/>
+<%= text_field 'show', 'image_url'  %></p>
+
+<p><label for="show_onair">Status</label><br/>
+    <%= select :show, :onair, {'On air' => true, 'Cancelled' => false} %>
+</p>
+
+<p><label for="show_no_seasons">No seasons</label><br/>
+<%= text_field 'show', 'no_seasons'  %></p>
+
+<p><label for="show_start_year">Start year</label><br/>
+<%= text_field 'show', 'start_year'  %></p>
+
+<p><label for="show_end_year">End year</label><br/>
+<%= text_field 'show', 'end_year'  %></p>
+<!--[eoform:show]-->
+

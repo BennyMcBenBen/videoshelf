@@ -1,0 +1,2 @@
+module VideoLibraryHelper
+end

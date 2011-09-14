@@ -1,0 +1,19 @@
+<h1><%= h(@app_user.name) %>'s Wishlist</h1>
+<ul>
+	<% for wishlist_item in @wishlist %>
+    <li>
+        <%= link_to "[X]",
+        	{:action => "delete_from_wishlist",
+        	:id => wishlist_item.item_id},
+        	:confirm => "Really delete #{wishlist_item.video_title} from wishlist?" %>
+        <% if wishlist_item.show_id %>
+        	
+        	<%= link_to wishlist_item.show_title , :action => 'show', :id => wishlist_item.show_id %>
+			<%= h(wishlist_item.season_no) %>x<%= "%02d" % wishlist_item.season_ep_no %>:
+			<%= link_to wishlist_item.video_title , :action => 'video', :id => wishlist_item.video_id -%>
+        <% else %>
+			<%= link_to wishlist_item.video_title, :action => 'video', :id => wishlist_item.video_id %>
+        <% end %>
+    </li>
+	<% end %>
+</ul>

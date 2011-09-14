@@ -1,0 +1,17 @@
+<p>
+	<% video = @online_video.video %>
+    <% if video.class == Episode %>
+    	<%= h(video.show.title) %>:
+    <% end %>
+    <%= h(video.title) %>
+    (<%= h(video.year) %>)
+    <% if video.class == Episode %>
+    	[<%= h(video.class) %>
+    	<%= h(video.season_no) %>x<%= h(video.season_ep_no) %>]
+	<% end %>
+</p>
+<p>Embed:</p>
+<p><%= @online_video.embed %></p>
+
+<%= link_to 'Edit', :action => 'edit', :id => @online_video %> |
+<%= link_to 'Back', :action => 'list' %>

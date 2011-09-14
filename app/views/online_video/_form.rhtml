@@ -1,0 +1,17 @@
+<%= error_messages_for 'online_video' %>
+<!--[form:online_video]-->
+<p>
+	<label for="online_video_video_id">
+        Video
+    </label>
+    <%= collection_select(:online_video, :video_id,
+   		@videos, :id, :title, { :include_blank => true } ) %>
+</p>
+<p>
+    <label for="online_video_embed">
+        Embed
+    </label>
+    <br/>
+    <%= text_area 'online_video', 'embed' %>
+</p>
+<!--[eoform:online_video]-->

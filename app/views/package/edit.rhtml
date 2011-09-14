@@ -1,0 +1,9 @@
+<h1>Editing package</h1>
+
+<% form_tag :action => 'update', :id => @package do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag 'Edit' %>
+<% end %>
+
+<%= link_to 'Show', :action => 'show', :id => @package %> |
+<%= link_to 'Back', :action => 'list' %>

@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <title>Videoshelf | Manager : <%= controller.action_name %></title>
+  <%= stylesheet_link_tag "scaffold", "videoshelf", :media => "all" %>
+</head>
+<body id="admin">
+  <div id="banner">
+    <%= @page_title || "Videoshelf" %>
+  </div>
+  <div id="columns">
+    <div id="side">
+      <p>
+        <div class="user"><%= h(@app_user.name) %> (<%= link_to "Logout", :controller => 'login', :action => 'logout' %>)</div>
+      </p>
+      <p>
+        <%= link_to "Videos",   :controller => 'video', :action => 'list' %>
+      </p>
+	  <p>
+        <%= link_to "Shows",   :controller => 'show', :action => 'list' %>
+      </p>
+	  <p>
+        <%= link_to "Packages",   :controller => 'package', :action => 'list' %>
+      </p>
+	  <p>
+        <%= link_to "Online Videos",   :controller => 'online_video', :action => 'list' %>
+      </p>
+    </div>
+    <div id="main">
+    <% if flash[:notice] -%>
+      <div id="notice"><%= flash[:notice] %></div>
+    <% end -%>
+      <%= yield :layout %>
+    </div>
+  </div>
+</body>
+</html>

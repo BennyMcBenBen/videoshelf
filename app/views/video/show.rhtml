@@ -1,0 +1,18 @@
+<p>
+	<img src="/images/<%= @video.image_url %>"/>
+</p>
+<p>
+    <% if @video.class == Episode %>
+    	<%= h(@video.show.title) %>:
+    <% end %>
+    <%= h(@video.title) %>
+    (<%= h(@video.year) %>)
+    <% if @video.class == Episode %>
+    	[<%= h(@video.class) %>
+    	<%= h(@video.season_no) %>x<%= h(@video.season_ep_no) %>],
+	<% end %>
+	<%= h(@video.length) %> minutes
+    <br/>
+    <%= h(@video.description) %>
+</p>
+<%= link_to 'Edit', :action => 'edit', :id => @video %> |<%= link_to 'Back', :action => 'index' %>

@@ -1,0 +1,40 @@
+<div id="video-list">
+    <h1>Show Listing</h1>
+    <table cellpadding="5" cellspacing="0">
+        <% for show in @shows %>
+        <tr valign="top" class="<%= cycle('list-line-odd', 'list-line-even') %>">
+            <td>
+                <img class="list-image" src="/images/<%= show.image_url %>"/>
+            </td>
+            <td width="60%">
+                <span class="list-title"><%= h(show.title) %></span>
+				<br />
+                <% if show.onair %>
+                	Status: On Air
+				<% else %>
+                	Status: Cancelled
+				<% end %>
+                <span class="show-year">(<%= h(show.start_year) %>-<%= h(show.end_year) %>)</span>
+                <br/>
+				Number of seasons: <%= h(show.no_seasons) %>
+				<br />
+                <%= h(truncate(show.description, 80)) %>
+            </td>
+            <td class="list-actions">
+                <%= link_to 'Show', :action => 'show', :id => show %>
+                <br/>
+                <%= link_to 'Edit', :action => 'edit', :id => show %>
+                <br/>
+                <%= link_to 'Destroy', { :action  => 'destroy', :id => show },
+                :confirm => "Are you sure?",
+                :method  => :post %>
+            </td>
+        </tr>
+        <% end %>
+    </table>
+</div>
+
+<%= link_to 'Previous page', { :page => @show_pages.current.previous } if @show_pages.current.previous %>
+<%= link_to 'Next page', { :page => @show_pages.current.next } if @show_pages.current.next %>
+<br/>
+<%= link_to 'New show', :action => 'new' %>

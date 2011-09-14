@@ -1,0 +1,25 @@
+<h1>Package</h1>
+<p>Title: <%= h @package.title %></p>
+<p><img src="/images/<%= @package.image_url %>"/></p>
+<p>Description: <%= h @package.description %></p>
+<p>No discs: <%= h @package.no_discs %></p>
+<p>Form: <%= h @package.form %></p>
+<p>Format: <%= h @package.format %></p>
+<p>
+	<% @discs.each do |disc| %>
+		Disc <%= h disc.disc_no %>:
+		<ul>
+		<% disc_videos = DiscVideo.find(:all, 
+			:include => :video, 
+			:conditions => ["disc_id = ?", disc.id],
+			:order => 'videos.title') %>
+		<% disc_videos.each do |disc_video| %>
+			<% video = disc_video.video %>
+				<li><%= h video.title %></li>
+			<% end %>
+		</ul>
+	<% end %>
+</p>	
+
+<%= link_to 'Edit', :action => 'edit', :id => @package %> |
+<%= link_to 'Back', :action => 'list' %>

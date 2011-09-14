@@ -1,0 +1,20 @@
+<p>
+	<img src="/images/<%= @show.image_url %>"/>
+</p>
+<p>
+    <h2><%= h(@show.title) %></h2>
+	<% if @show.onair %>
+		Status: On Air
+	<% else %>
+		Status: Cancelled
+	<% end %>
+	(<%= h(@show.start_year) %>-<%= h(@show.end_year) %>)
+	<br />
+	Number of seasons: <%= h(@show.no_seasons) %>
+	<br />
+    <%= h(@show.description) %>
+	<br />
+</p>
+
+<%= link_to 'Edit', :action => 'edit', :id => @show %> |
+<%= link_to 'Back', :action => 'list' %>

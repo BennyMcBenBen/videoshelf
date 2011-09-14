@@ -1,0 +1,35 @@
+<h2><%= h @package.title %> (<%= h @package.pretty_format %>)</h2>
+<p>
+    <img src="/images/<%= @package.image_url %>"/>
+</p>
+<p>Description: <%= h @package.description %></p>
+<p>No discs: <%= @package.no_discs %></p>
+<p>
+	<% for disc in @package.discs %>
+		Disc <%= h disc.disc_no %>:
+		<ul>
+		<% disc_videos = DiscVideo.find(:all, 
+			:include => :video, 
+			:conditions => ["disc_id = ?", disc.id],
+			:order => @order_by) %>
+		<% disc_videos.each do |disc_video| %>
+			<% video = disc_video.video %>
+				<li>
+					<% if @package.form == 'show' %>
+						<%= h(video.season_no) %>x<%= "%02d" % video.season_ep_no %>:
+					<% end %>
+					<%= link_to video.title, :action => :video, :id => video.id %>
+				</li>
+			<% end %>
+		</ul>
+	<% end %>
+</p>
+<p>
+	<% if @library_item %>
+		<br />
+		[This item is in your Physical Library]
+	<% else %>
+		<%= button_to "Add to Physical Library", :action => :add_to_package_library, 
+			:user_id => @app_user.id, :package_id => @package.id %>
+	<% end %>
+</p>

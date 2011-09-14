@@ -1,0 +1,8 @@
+<% for column in DiscVideo.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%=h @disc_video.send(column.name) %>
+</p>
+<% end %>
+
+<%= link_to 'Edit', :action => 'edit', :id => @disc_video %> |
+<%= link_to 'Back', :action => 'list' %>

@@ -1,0 +1,27 @@
+<h1>Listing disc_videos</h1>
+
+<table>
+  <tr>
+  <% for column in DiscVideo.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for disc_video in @disc_videos %>
+  <tr>
+  <% for column in DiscVideo.content_columns %>
+    <td><%=h disc_video.send(column.name) %></td>
+  <% end %>
+    <td><%= link_to 'Show', :action => 'show', :id => disc_video %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => disc_video %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => disc_video }, :confirm => 'Are you sure?', :method => :post %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @disc_video_pages.current.previous } if @disc_video_pages.current.previous %>
+<%= link_to 'Next page', { :page => @disc_video_pages.current.next } if @disc_video_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New disc_video', :action => 'new' %>

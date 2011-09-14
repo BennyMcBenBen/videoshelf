@@ -1,0 +1,42 @@
+<h1>Browse</h1>
+
+<h2>Films</h2>
+<ul>
+	<% for video in @videos %>
+		<li>
+			<%= link_to video.title, :action => 'video', 
+				:id => video %> (<%= h(video.year) %>)
+		</li>
+	<% end %>
+</ul>
+
+<h2>Episodes</h2>
+<ul>
+	<% for episode in @episodes %>
+		<li>
+			<%= link_to episode.show.title , :action => 'show', :id => episode.show %>
+			<span class="episode-num"><%= h(episode.season_no) %>x<%= "%02d" % episode.season_ep_no %></span>:
+			<%= link_to episode.title , :action => 'video', :id => episode %>
+			(<%= h(episode.year) %>)
+		</li>
+	<% end %>
+</ul>
+
+<h2>Shows</h2>
+<ul>
+	<% for show in @shows %>
+		<li>
+			<%= link_to show.title, :action => 'show', :id => show %> (<%= h(show.start_year) %>-<%= h(show.end_year) %>)
+		</li>
+	<% end %>
+</ul>
+
+<h2>Packages</h2>
+<ul>
+	<% for package in @packages %>
+		<li>
+			<%= link_to package.title, :action => 'package', :id => package %>
+			(<%= package.pretty_format %>)
+		</li>
+	<% end %>
+</ul>

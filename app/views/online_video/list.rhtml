@@ -1,0 +1,36 @@
+<div id="video-list">
+    <h1>Online Video Listing</h1>
+    <table cellpadding="5" cellspacing="0">
+        <% for online_video in @online_videos %>
+        <tr valign="top" class="<%= cycle('list-line-odd', 'list-line-even') %>">
+            <td>
+            	<% video = online_video.video %>
+          		<% if video.show_id %>
+        			<%= h(video.show.title) %>
+					<%= h(video.season_no) %>x<%= "%02d" % video.season_ep_no %>:
+					<%= h(video.title) %>
+        		<% else %>
+					<%= h(video.title) %>
+        		<% end %>   	
+			</td>
+			<td><%= h(online_video.embed) %></td>
+            <td class="list-actions">
+                <%= link_to 'Show', :action => 'show', :id => online_video %>
+                <br/>
+                <%= link_to 'Edit', :action => 'edit', :id => online_video %>
+                <br/>
+                <%= link_to 'Destroy', { :action  => 'destroy', :id => online_video },
+                :confirm => "Are you sure?",
+                :method  => :post %>
+            </td>
+        </tr>
+        <% end %>
+    </table>
+</div>
+
+<%= link_to 'Previous page', { :page => @online_video_pages.current.previous } if @online_video_pages.current.previous %>
+<%= link_to 'Next page', { :page => @online_video_pages.current.next } if @online_video_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New online video', :action => 'new' %>

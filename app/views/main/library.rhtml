@@ -1,0 +1,32 @@
+<h1><%= h(@app_user.name) %>'s Library</h1>
+<h2>Digital Video Library</h2>
+<ul>
+    <% for library_item in @video_library %>
+    <li>
+        <%= link_to "[X]",
+        	{:action => "delete_from_video_library",
+        	:id => library_item.item_id},
+        	:confirm => "Really delete #{library_item.video_title} from library?" %>
+        <% if library_item.show_id %>
+        	<%= link_to library_item.show_title , :action => 'show', :id => library_item.show_id %>
+			<span class="episode-num"><%= h(library_item.season_no) %>x<%= "%02d" % library_item.season_ep_no %></span>:
+			<%= link_to library_item.video_title , :action => 'video', :id => library_item.video_id -%>
+        <% else %>
+			<%= link_to library_item.video_title, :action => 'video', :id => library_item.video_id %>
+        <% end %>
+    </li>
+    <% end %>
+</ul>
+<h2>Physical Package Library</h2>
+<ul>
+    <% for library_item in @package_library %>
+    <li>
+        <%= link_to "[X]",
+        	{:action => "delete_from_package_library",
+        	:id => library_item},
+        	:confirm => "Really delete #{library_item.package.title} from library?" %>
+			<%= link_to library_item.package.title, :action => 'package', :id => library_item.package_id %>
+			(<%= library_item.package.pretty_format %>)
+    </li>
+    <% end %>
+</ul>

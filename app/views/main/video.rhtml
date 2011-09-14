@@ -1,0 +1,57 @@
+<h2 class="title">
+	<% if @video.class == Episode %>
+    	<%= link_to @video.show.title, :action => 'show', :id => @video.show %>
+		<%= h(@video.season_no) %>x<%= "%02d" % @video.season_ep_no %>:
+	<% end %>
+    <%= h(@video.title) %>
+	<span class="year">(<%= h(@video.year) %>)</span>
+</h2>
+<% if @prev_ep %>
+    <span class="prev_ep">
+   		<%= link_to "[<- Previous: #{@prev_ep.title}]", :action => 'video', :id => @prev_ep %>
+	</span>
+<% end %>
+<% if @next_ep %>
+	<span class="next_ep">
+    	<%= link_to "[Next: #{@next_ep.title} ->]", :action => 'video', :id => @next_ep %>
+	</span>
+<% end %>
+<p>
+    <img src="/images/<%= @video.image_url %>"/>
+</p>
+<p>
+    Length: <%= h(@video.length) %> minutes
+    <br/>
+    <%= h(@video.description) %>
+</p>
+<% if @packages.size > 0 %>
+	<p>
+		Packages this video is contained in:
+		<ul>
+			<% for package in @packages %>
+				<li><%= link_to package.title, :action => :package, :id => package %></li>
+			<% end %>
+		</ul>
+	</p>
+<% end %>
+<p>
+	<% if @library_item %>
+		<br />
+		[This item is in your Digital Library]
+	<% else %>
+		<%= button_to "Add to Digital Library", :action => :add_to_video_library, 
+			:user_id => @app_user.id, :video_id => @video.id %>
+	<% end %>
+	
+	<% if @wishlist_item %>
+		<br />
+		[This item is in your Wishlist]
+	<% else %>
+		<%= button_to "Add to Wishlist", :action => :add_to_wishlist, 
+			:user_id => @app_user.id, :video_id => @video.id %>
+	<% end %>
+</p>
+<% if @online_video %>
+	<p>This video is available online:</p>
+	<p><%= @online_video.embed %></p>
+<% end %>
